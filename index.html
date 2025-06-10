@@ -3,56 +3,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lawrence County, Indiana High School Alumni Directory</title>
+  <title>Lawrence County, Indiana Alumni Directory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 20px;
-      background-color: #f5f5f5;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 4rem;
+      background-color: #f8f9fa;
     }
-    h1 {
+    .table-wrapper {
+      overflow-x: auto;
+    }
+    .download-btn {
+      margin-bottom: 1rem;
+    }
+    footer {
       text-align: center;
-    }
-    td {
-      white-space: normal !important;
-      word-wrap: break-word;
-    }
-    .dataTables_wrapper {
-      margin-top: 20px;
-    }
-    table.dataTable tbody tr:nth-child(even) {
-      background-color: #f0f0f0;
-    }
-    table.dataTable tbody tr:nth-child(odd) {
-      background-color: #ffffff;
-    }
-    table.dataTable thead {
-      background-color: #444;
-      color: white;
-    }
-    @media screen and (max-width: 768px) {
-      table.dataTable {
-        width: 100% !important;
-        display: block;
-        overflow-x: auto;
-      }
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
+<div class="dark-toggle">
+  <button class="btn btn-sm btn-dark" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</div>
 
-<h1>Lawrence County, Indiana<br>High School Alumni Directory</h1>
-<p style='text-align:center; font-size:1.1em; margin-bottom: 20px;'><strong>Currently Represented Years by High School:</strong><br><em>Bedford High School:</em> 1920, 1923, 1926–1928<br><em>Fayetteville High School:</em> 1952, 1974<br><em>Heltonville High School:</em> 1952<br><em>Huron High School:</em> 1911–1948<br><em>Mitchell High School:</em> 1923–1932, 1936–1944<br><em>Needmore High School:</em> 1964<br><em>Oolitic High School:</em> 1948–1949, 1951–1957, 1974<br><em>Shawswick High School:</em> 1931, 1950<br><em>Tunnelton High School:</em> 1949–1950<br><em>Williams High School:</em> 1944<br></p>
+<style>
+  .dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+  }
+  .dark-mode .table-striped > tbody > tr:nth-of-type(odd) {
+    --bs-table-accent-bg: rgba(255,255,255,.05);
+  }
+  .dark-mode .table-bordered {
+    border-color: #444;
+  }
+  .dark-mode .navbar, .dark-mode footer {
+    background-color: #1f1f1f !important;
+  }
+  .dark-mode .alert-info {
+    background-color: #2f2f2f !important;
+    color: #ccc !important;
+    border-color: #444;
+  }
+  .dark-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+  }
+</style>
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('footer').classList.toggle('dark-mode');
+    document.querySelector('.navbar').classList.toggle('dark-mode');
+    document.querySelector('.alert').classList.toggle('dark-mode');
+  }
+</script>
 
-<div style="overflow-x:auto">
-<table border="1" class="dataframe display" id="alumniTable">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Lawrence County Alumni</a>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="text-center">
+    <h1 class="mb-3">Lawrence County, Indiana<br>High School Alumni Directory</h1>
+  </div>
+
+  <div class="alert alert-info text-center" role="alert">
+    <strong>Currently Represented Years by High School:</strong><br>
+    <em>Bedford High School:</em> 1920, 1923, 1926–1928<br><em>Fayetteville High School:</em> 1952, 1974<br><em>Heltonville High School:</em> 1952<br><em>Huron High School:</em> 1911–1948<br><em>Mitchell High School:</em> 1923–1932, 1936–1944<br><em>Needmore High School:</em> 1964<br><em>Oolitic High School:</em> 1948–1949, 1951–1957, 1974<br><em>Shawswick High School:</em> 1931, 1950<br><em>Tunnelton High School:</em> 1949–1950<br><em>Williams High School:</em> 1944<br>
+  </div>
+
+  <div class="text-end download-btn">
+    <a href="lawrence_county_alumni.csv" class="btn btn-success btn-sm">Download CSV</a>
+    <a href="mailto:austintstroud@gmail.com" class="btn btn-outline-secondary btn-sm">Submit Correction</a>
+  </div>
+
+  <div class="table-wrapper">
+    <table border="1" class="dataframe table table-striped table-bordered" id="alumniTable">
   <thead>
     <tr style="text-align: right;">
       <th>Last Name</th>
@@ -23418,18 +23461,20 @@
     </tr>
   </tbody>
 </table>
+  </div>
 </div>
 
-<p style="text-align: center; margin-top: 30px; font-size: 1.1em;">
-  For corrections or additions, please email: <a href="mailto:austintstroud@gmail.com">austintstroud@gmail.com</a>
-</p>
+<footer class="bg-light mt-4">
+  <div class="container">
+    <p>&copy; 2025 Lawrence County, Indiana Alumni Directory</p>
+  </div>
+</footer>
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#alumniTable').DataTable({
       "pageLength": 25,
       "order": [[0, "asc"]],
-      responsive: true
     });
   });
 </script>
