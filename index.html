@@ -40,10 +40,15 @@
       text-decoration: none;
     }
 
+    .table-container {
+      overflow-x: auto;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1em;
+      min-width: 800px;
     }
 
     table, th, td {
@@ -53,40 +58,7 @@
     th, td {
       padding: 0.5em;
       text-align: left;
-    }
-
-    @media (max-width: 768px) {
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-
-      thead tr {
-        display: none;
-      }
-
-      td {
-        position: relative;
-        padding-left: 50%;
-      }
-
-      td::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 45%;
-        padding-left: 0.5em;
-        font-weight: bold;
-        white-space: nowrap;
-      }
-
-      td:nth-of-type(1)::before { content: "Last Name"; }
-      td:nth-of-type(2)::before { content: "First Name"; }
-      td:nth-of-type(3)::before { content: "Middle Name or Initial"; }
-      td:nth-of-type(4)::before { content: "High School"; }
-      td:nth-of-type(5)::before { content: "Year Graduated"; }
-      td:nth-of-type(6)::before { content: "Office"; }
-      td:nth-of-type(7)::before { content: "Nickname"; }
-      td:nth-of-type(8)::before { content: "Other Notes"; }
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -109,20 +81,21 @@
     <a href="LawrenceCountyIndianaHighSchoolAlumni.csv" download>📥 Download CSV</a>
     <a href="mailto:austintstroud@gmail.com">✉️ Email corrections or additions</a>
   </div>
-  <div style="overflow-x:auto;"><table id="alumni" class="display">
-    <thead>
-      <tr>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Middle Name or Initial</th>
-        <th>High School</th>
-        <th>Year Graduated</th>
-        <th>Office</th>
-        <th>Nickname</th>
-        <th>Other Notes</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="table-container">
+    <table id="alumni" class="display">
+      <thead>
+        <tr>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Middle Name or Initial</th>
+          <th>High School</th>
+          <th>Year Graduated</th>
+          <th>Office</th>
+          <th>Nickname</th>
+          <th>Other Notes</th>
+        </tr>
+      </thead>
+      <tbody>
 
       <tr>
         <td>Abel</td>
@@ -31554,8 +31527,9 @@
         <td></td>
         <td>Source: Classmates.com </td>
       </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
   <script>
     $(document).ready(function() {
       $('#alumni').DataTable();
